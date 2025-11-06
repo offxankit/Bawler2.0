@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
 
     // Generate token
     const token = generateToken({
-      userId: user._id.toString(),
+      userId: String((user as any)._id),
       email: user.email,
       role: user.role,
     });
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
         message: 'User created successfully',
         token,
         user: {
-          id: user._id.toString(),
+          id: String((user as any)._id),
           email: user.email,
           name: user.name,
           role: user.role,
